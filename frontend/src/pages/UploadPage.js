@@ -5,7 +5,7 @@ import UploadDropzone from '../components/UploadDropzone';
 import StatisticCard from '../components/StatisticCard';
 
 const roles = ['Software Developer', 'Data Analyst', 'Product Manager'];
-const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
+const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || (process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : '');
 
 function UploadPage() {
   const [fileName, setFileName] = useState('');

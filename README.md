@@ -34,6 +34,26 @@ A complete AI Resume Analyzer web application with React + Tailwind frontend and
 - Set `OPENAI_API_KEY` in the backend service environment variables.
 - Set `REACT_APP_API_BASE_URL` in Vercel to your deployed backend URL, for example `https://your-backend.onrender.com`.
 
+## Docker deployment
+
+This project can also be deployed as one Docker web service. The Docker image builds the React frontend and serves it from the Express backend, so the frontend and API run on the same domain.
+
+Local Docker commands:
+
+```bash
+docker build -t ai-resume-analyzer .
+docker run -p 5000:5000 --env OPENAI_API_KEY=your_openai_api_key ai-resume-analyzer
+```
+
+Open `http://localhost:5000` after the container starts.
+
+For Render Docker deployment:
+
+- Create a new Web Service from this GitHub repo.
+- Select Docker environment.
+- Set `OPENAI_API_KEY` in Environment variables.
+- Deploy. The app and API will use the same Render URL.
+
 ## Features
 
 - Resume upload via drag-and-drop
