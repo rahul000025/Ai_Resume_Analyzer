@@ -128,7 +128,7 @@ const analyzeResume = async (text, role) => {
   }
 
   const prompt = buildPrompt({ text, role });
-  const response = await openai.createChatCompletion({
+  const response = await openai.chat.completions.create({
     model: 'gpt-4o-mini',
     messages: [
       { role: 'system', content: 'You are a resume analysis assistant.' },
@@ -138,9 +138,10 @@ const analyzeResume = async (text, role) => {
     max_tokens: 500,
   });
 
-  const content = response.data.choices[0]?.message?.content?.trim() || '';
+  const content = response.choices[0]?.message?.content?.trim() || '';
   try {
-    return JSON.parse(content);
+    const json = content.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```$/i, '').trim();
+    return JSON.parse(json);
   } catch (parseError) {
     return {
       summary: 'Unable to parse AI response. Here is the raw feedback.',

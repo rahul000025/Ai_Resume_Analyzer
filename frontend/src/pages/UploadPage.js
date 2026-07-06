@@ -123,7 +123,7 @@ function UploadPage() {
               disabled={!resumeText || loading}
               className="w-full rounded-3xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {loading ? 'Analyzing…' : 'Analyze Resume'}
+              {loading ? 'Analyzing...' : 'Analyze Resume'}
             </button>
           </div>
         </div>
