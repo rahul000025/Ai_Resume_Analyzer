@@ -5,6 +5,7 @@ import UploadDropzone from '../components/UploadDropzone';
 import StatisticCard from '../components/StatisticCard';
 
 const roles = ['Software Developer', 'Data Analyst', 'Product Manager'];
+const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
 
 function UploadPage() {
   const [fileName, setFileName] = useState('');
@@ -23,7 +24,7 @@ function UploadPage() {
     formData.append('resume', file);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/upload', formData, {
+      const response = await axios.post(`${apiBaseUrl}/api/upload`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setResumeText(response.data.text);
@@ -44,7 +45,7 @@ function UploadPage() {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/analyze', {
+      const response = await axios.post(`${apiBaseUrl}/api/analyze`, {
         text: resumeText,
         role: selectedRole,
       });
